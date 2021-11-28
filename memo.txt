@@ -1,0 +1,24 @@
+○lossを減らす
+NoChanged そのままの設定
+  -> train_lossの傾きを見るとまだ減りそう
+Epoch20 Epochを20に増やしたもの
+  -> val_lossが全然減っていない, 過学習？
+Conv64 フィルター枚数を2倍にした
+  -> train_lossが大きく上昇
+ConvLayer Conv層を追加
+  -> そんなに上がらない -> 小さく
+
+○収束を早める
+学習率を変更　0.01->0.02
+  -> train_lossが大きくなる
+最適化手法を変更 RMSProp->Nadam
+  -> しっかりと収束した https://qiita.com/msekino/items/0b522df43d447c01e3ed
+
+○過学習を減らす
+DropOutを強める
+  -> 過学習は少し減ったけどスコアはそんなに上がらない
+  -> 2個目のpooling層にはdropout入れないのか？
+DropOutLayerを追加する
+  -> 過学習も減ってスコアもわずかに上昇
+  -> DropOutを工夫するとtrain_lossが増える　-> 学習が遅くなる？？
+
